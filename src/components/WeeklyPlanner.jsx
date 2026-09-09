@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Dumbbell, Flame, Heart, RefreshCcw, ShieldCheck } from 'lucide-react';
+import { Calendar, Dumbbell, Flame, Heart, RefreshCcw } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export const WeeklyPlanner = () => {
@@ -17,17 +17,17 @@ export const WeeklyPlanner = () => {
     <div className="space-y-6">
       
       {/* Header Info */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 rounded-2xl bg-dark-800/80 border border-gray-800">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 sm:p-6 rounded-3xl bg-white border border-slate-200 shadow-sm">
         <div>
-          <h3 className="text-xl font-bold text-white flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-emerald-400" />
+          <h3 className="text-xl font-extrabold text-slate-900 flex items-center gap-2">
+            <Calendar className="w-5 h-5 text-emerald-600" />
             Optimal Weekly Training Schedule
           </h3>
-          <p className="text-xs text-gray-400 mt-1">
+          <p className="text-xs text-slate-600 font-semibold mt-1">
             Designed for 48-hour recovery windows between muscle groups to maximize strength and muscle growth.
           </p>
         </div>
-        <span className="px-3 py-1.5 rounded-xl bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/30 whitespace-nowrap">
+        <span className="px-3 py-1.5 rounded-xl bg-emerald-100 text-emerald-800 text-xs font-extrabold border border-emerald-300 whitespace-nowrap">
           7-Day Blueprint
         </span>
       </div>
@@ -35,7 +35,6 @@ export const WeeklyPlanner = () => {
       {/* Desktop / Tablet View Grid */}
       <div className="hidden md:grid md:grid-cols-7 gap-3">
         {schedule.map((item, idx) => {
-          const Icon = item.icon;
           const isRest = item.type === "Rest" || item.type === "Recovery";
           return (
             <motion.div
@@ -46,29 +45,29 @@ export const WeeklyPlanner = () => {
               transition={{ duration: 0.3, delay: idx * 0.05 }}
               className={`p-4 rounded-2xl border flex flex-col justify-between h-56 text-center transition-all ${
                 isRest
-                  ? 'bg-dark-900/60 border-gray-800/60 text-gray-400'
-                  : 'bg-dark-800/90 border-gray-800 hover:border-emerald-500/50 hover:bg-dark-700/80'
+                  ? 'bg-slate-100 border-slate-200 text-slate-600'
+                  : 'bg-white border-slate-200 hover:border-emerald-500/50 shadow-sm hover:shadow-md'
               }`}
             >
               <div>
-                <span className={`text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full inline-block mb-2 ${
-                  isRest ? 'bg-gray-800 text-gray-400' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
+                <span className={`text-[10px] uppercase font-black tracking-wider px-2 py-0.5 rounded-full inline-block mb-2 ${
+                  isRest ? 'bg-slate-200 text-slate-700' : 'bg-emerald-100 text-emerald-800 border border-emerald-300'
                 }`}>
                   {item.day.slice(0, 3)}
                 </span>
                 
-                <h4 className="text-sm font-bold text-white mb-2 leading-snug">
+                <h4 className="text-sm font-extrabold text-slate-900 mb-2 leading-snug">
                   {item.split}
                 </h4>
 
-                <p className="text-[11px] text-gray-400 leading-tight">
+                <p className="text-[11px] text-slate-600 font-semibold leading-tight">
                   {item.focus}
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-gray-800/60 flex items-center justify-between text-[10px] text-gray-400">
+              <div className="pt-3 border-t border-slate-200 flex items-center justify-between text-[10px] text-slate-600 font-bold">
                 <span>{item.type}</span>
-                <span className={`font-semibold ${isRest ? 'text-gray-500' : 'text-emerald-400'}`}>
+                <span className={`font-black ${isRest ? 'text-slate-500' : 'text-emerald-700'}`}>
                   {item.intensity}
                 </span>
               </div>
@@ -79,7 +78,7 @@ export const WeeklyPlanner = () => {
 
       {/* Mobile Card Stack */}
       <div className="md:hidden space-y-3">
-        {schedule.map((item, idx) => {
+        {schedule.map((item) => {
           const Icon = item.icon;
           const isRest = item.type === "Rest" || item.type === "Recovery";
           return (
@@ -87,27 +86,27 @@ export const WeeklyPlanner = () => {
               key={item.day}
               className={`p-4 rounded-2xl border flex items-center justify-between ${
                 isRest
-                  ? 'bg-dark-900/60 border-gray-800/60 text-gray-400'
-                  : 'bg-dark-800/90 border-gray-800 hover:border-emerald-500/40'
+                  ? 'bg-slate-100 border-slate-200 text-slate-600'
+                  : 'bg-white border-slate-200 shadow-sm'
               }`}
             >
               <div className="flex items-center gap-3">
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
-                  isRest ? 'bg-gray-800 text-gray-400' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
+                  isRest ? 'bg-slate-200 text-slate-700' : 'bg-emerald-100 text-emerald-800 border border-emerald-300'
                 }`}>
                   <Icon className="w-5 h-5" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-extrabold text-white">{item.day}</span>
-                    <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
-                      isRest ? 'bg-gray-800 text-gray-400' : 'bg-emerald-500/10 text-emerald-400'
+                    <span className="text-xs font-black text-slate-900">{item.day}</span>
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                      isRest ? 'bg-slate-200 text-slate-700' : 'bg-emerald-100 text-emerald-800'
                     }`}>
                       {item.type}
                     </span>
                   </div>
-                  <div className="text-sm font-bold text-emerald-400">{item.split}</div>
-                  <div className="text-xs text-gray-400 mt-0.5">{item.focus}</div>
+                  <div className="text-sm font-extrabold text-emerald-700">{item.split}</div>
+                  <div className="text-xs text-slate-600 font-semibold mt-0.5">{item.focus}</div>
                 </div>
               </div>
             </div>
