@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
   whatsappNumber: "918317688770", // Single configurable WhatsApp number
   email: "contact@shanmukfitness.com",
   location: "Hyderabad, India",
-  instagram: "https://instagram.com/shanmuk_fitness",
+  instagram: "https://www.instagram.com/shannufit?stkn=OG9sa2x6NHY1ZHBp",
   youtube: "https://youtube.com/c/shanmukfitness",
   facebook: "https://facebook.com/shanmukfitness",
 };

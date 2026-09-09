@@ -24,7 +24,7 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Poppins', 'Inter', 'sans-serif'],
       },
       boxShadow: {
         'glow': '0 0 25px -5px rgba(16, 185, 129, 0.3)',
