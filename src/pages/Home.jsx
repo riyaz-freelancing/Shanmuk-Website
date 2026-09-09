@@ -180,7 +180,7 @@ export const Home = () => {
                 className="inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white font-extrabold text-base shadow-2xl shadow-emerald-500/30 transition-all hover:scale-105"
               >
                 <WhatsAppIcon className="w-6 h-6 text-white" />
-                <span>Start on WhatsApp (+91 8317688770)</span>
+                <span>Start on WhatsApp</span>
               </a>
 
               <Link to={currentSlide.ctaLink}>
@@ -470,7 +470,7 @@ export const Home = () => {
               className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white font-extrabold text-base shadow-xl shadow-emerald-500/30 transition-all hover:scale-105"
             >
               <WhatsAppIcon className="w-6 h-6 text-white" />
-              <span>Chat on WhatsApp (+91 8317688770)</span>
+              <span>Chat on WhatsApp</span>
             </a>
             <Link to="/contact">
               <Button variant="secondary" size="lg" className="bg-slate-800 text-white border-slate-700 hover:bg-slate-700">

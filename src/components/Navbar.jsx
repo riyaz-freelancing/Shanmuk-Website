@@ -142,7 +142,7 @@ export const Navbar = () => {
                   className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-[#25D366] text-white font-bold text-base shadow-md"
                 >
                   <WhatsAppIcon className="w-5 h-5 text-white" />
-                  <span>Chat on WhatsApp (+91 8317688770)</span>
+                  <span>Chat on WhatsApp</span>
                 </a>
               </div>
             </div>
