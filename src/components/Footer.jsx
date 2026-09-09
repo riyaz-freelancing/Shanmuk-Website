@@ -7,7 +7,7 @@ import { WhatsAppIcon } from './WhatsAppIcon';
 
 export const Footer = () => {
   return (
-    <footer className="bg-slate-900 text-slate-300 pt-16 pb-12 border-t border-slate-800">
+    <footer className="bg-slate-900 text-slate-300 pt-16 pb-20 sm:pb-24 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
           
@@ -114,15 +114,15 @@ export const Footer = () => {
 
         </div>
 
-        {/* Disclaimer & Copyright */}
-        <div className="pt-8 text-xs space-y-4">
+        {/* Disclaimer & Copyright Bar (with right padding pr-16 sm:pr-24 to avoid WhatsApp button overlap) */}
+        <div className="pt-8 text-xs space-y-4 pr-16 sm:pr-24">
           <p className="p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80 text-slate-300 leading-relaxed">
             <strong className="text-white">Disclaimer:</strong> {DIET_DISCLAIMER}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 text-slate-400">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-4 text-slate-400">
             <p>© {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.</p>
-            <p className="flex items-center gap-1 font-semibold text-slate-300">
+            <p className="flex items-center gap-1.5 font-bold text-slate-200 bg-slate-800/90 px-3.5 py-1.5 rounded-xl border border-slate-700">
               Designed and Developed by <span className="text-emerald-400 font-extrabold">Inaya Web Digitals</span>
             </p>
           </div>
