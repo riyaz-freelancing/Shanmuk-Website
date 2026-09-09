@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Send, CheckCircle2, AlertCircle, Loader2, MessageSquare } from 'lucide-react';
+import { Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import { Button } from './Button';
 import { getWhatsAppUrl } from '../config/constants';
+import { WhatsAppIcon } from './WhatsAppIcon';
 
 // Zod Schema Validation
 const contactSchema = z.object({
@@ -41,9 +42,7 @@ export const ContactForm = () => {
     setErrorMessage('');
 
     try {
-      // Simulate asynchronous API call
       await new Promise((resolve) => setTimeout(resolve, 1500));
-      
       setIsSuccess(true);
       reset();
     } catch (err) {
@@ -54,18 +53,18 @@ export const ContactForm = () => {
   };
 
   return (
-    <div className="p-6 sm:p-8 rounded-3xl glass-card border border-gray-800 shadow-2xl relative overflow-hidden">
+    <div className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-lg relative overflow-hidden text-slate-900">
       
       {/* Decorative Glow */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
 
       {isSuccess ? (
         <div className="text-center py-12 space-y-4">
-          <div className="w-16 h-16 rounded-2xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center mx-auto">
+          <div className="w-16 h-16 rounded-2xl bg-emerald-100 text-emerald-600 border border-emerald-300 flex items-center justify-center mx-auto">
             <CheckCircle2 className="w-8 h-8" />
           </div>
-          <h3 className="text-2xl font-extrabold text-white">Message Sent Successfully!</h3>
-          <p className="text-gray-400 text-sm max-w-md mx-auto">
+          <h3 className="text-2xl font-black text-slate-900">Message Sent Successfully!</h3>
+          <p className="text-slate-600 text-sm max-w-md mx-auto font-medium">
             Thank you for reaching out! Coach Shanmuk will review your goals and get back to you within 24 hours.
           </p>
 
@@ -74,32 +73,33 @@ export const ContactForm = () => {
               onClick={() => setIsSuccess(false)}
               variant="secondary"
               size="md"
+              className="bg-slate-100 text-slate-800 border-slate-300 hover:bg-slate-200"
             >
               Send Another Message
             </Button>
             
-            <Button
+            <a
               href={getWhatsAppUrl("Hi Shanmuk, I just submitted the contact form on your website!")}
-              external
-              variant="whatsapp"
-              size="md"
-              icon={MessageSquare}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#25D366] text-white font-extrabold text-sm shadow-md"
             >
-              Instant WhatsApp Connect
-            </Button>
+              <WhatsAppIcon className="w-5 h-5 text-white" />
+              <span>Instant WhatsApp Connect</span>
+            </a>
           </div>
         </div>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-          <h3 className="text-xl font-extrabold text-white mb-2 flex items-center gap-2">
-            <span>Send Coach Shanmuk a Message</span>
+          <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-1">
+            Send Coach Shanmuk a Message
           </h3>
-          <p className="text-xs text-gray-400 mb-6">
+          <p className="text-xs text-slate-600 font-medium mb-6">
             Fill out the form below to receive customized guidance, plan recommendations, or coaching inquiries.
           </p>
 
           {errorMessage && (
-            <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-center gap-2">
+            <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2 font-bold">
               <AlertCircle className="w-4 h-4 shrink-0" />
               <span>{errorMessage}</span>
             </div>
@@ -110,66 +110,66 @@ export const ContactForm = () => {
             
             {/* Full Name */}
             <div>
-              <label className="block text-xs font-semibold text-gray-300 mb-1.5">
-                Full Name <span className="text-emerald-400">*</span>
+              <label className="block text-xs font-bold text-slate-800 mb-1.5">
+                Full Name <span className="text-emerald-600">*</span>
               </label>
               <input
                 type="text"
                 placeholder="e.g. Rahul Sharma"
                 {...register('name')}
-                className={`w-full px-4 py-3 rounded-xl bg-dark-800 border text-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all ${
-                  errors.name ? 'border-red-500/80 bg-red-500/5' : 'border-gray-700/80 hover:border-gray-600'
+                className={`w-full px-4 py-3 rounded-xl bg-slate-50 border text-slate-900 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all ${
+                  errors.name ? 'border-red-500 bg-red-50' : 'border-slate-300 hover:border-slate-400'
                 }`}
               />
               {errors.name && (
-                <p className="text-red-400 text-[11px] mt-1">{errors.name.message}</p>
+                <p className="text-red-600 text-[11px] font-bold mt-1">{errors.name.message}</p>
               )}
             </div>
 
             {/* Email Address */}
             <div>
-              <label className="block text-xs font-semibold text-gray-300 mb-1.5">
-                Email Address <span className="text-emerald-400">*</span>
+              <label className="block text-xs font-bold text-slate-800 mb-1.5">
+                Email Address <span className="text-emerald-600">*</span>
               </label>
               <input
                 type="email"
                 placeholder="rahul@example.com"
                 {...register('email')}
-                className={`w-full px-4 py-3 rounded-xl bg-dark-800 border text-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all ${
-                  errors.email ? 'border-red-500/80 bg-red-500/5' : 'border-gray-700/80 hover:border-gray-600'
+                className={`w-full px-4 py-3 rounded-xl bg-slate-50 border text-slate-900 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all ${
+                  errors.email ? 'border-red-500 bg-red-50' : 'border-slate-300 hover:border-slate-400'
                 }`}
               />
               {errors.email && (
-                <p className="text-red-400 text-[11px] mt-1">{errors.email.message}</p>
+                <p className="text-red-600 text-[11px] font-bold mt-1">{errors.email.message}</p>
               )}
             </div>
 
             {/* Phone Number */}
             <div>
-              <label className="block text-xs font-semibold text-gray-300 mb-1.5">
-                Phone / WhatsApp Number <span className="text-emerald-400">*</span>
+              <label className="block text-xs font-bold text-slate-800 mb-1.5">
+                Phone / WhatsApp Number <span className="text-emerald-600">*</span>
               </label>
               <input
                 type="tel"
-                placeholder="+91 98765 43210"
+                placeholder="+91 83176 88770"
                 {...register('phone')}
-                className={`w-full px-4 py-3 rounded-xl bg-dark-800 border text-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all ${
-                  errors.phone ? 'border-red-500/80 bg-red-500/5' : 'border-gray-700/80 hover:border-gray-600'
+                className={`w-full px-4 py-3 rounded-xl bg-slate-50 border text-slate-900 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all ${
+                  errors.phone ? 'border-red-500 bg-red-50' : 'border-slate-300 hover:border-slate-400'
                 }`}
               />
               {errors.phone && (
-                <p className="text-red-400 text-[11px] mt-1">{errors.phone.message}</p>
+                <p className="text-red-600 text-[11px] font-bold mt-1">{errors.phone.message}</p>
               )}
             </div>
 
             {/* Primary Fitness Goal */}
             <div>
-              <label className="block text-xs font-semibold text-gray-300 mb-1.5">
-                Primary Fitness Goal <span className="text-emerald-400">*</span>
+              <label className="block text-xs font-bold text-slate-800 mb-1.5">
+                Primary Fitness Goal <span className="text-emerald-600">*</span>
               </label>
               <select
                 {...register('goal')}
-                className="w-full px-4 py-3 rounded-xl bg-dark-800 border border-gray-700/80 text-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50 hover:border-gray-600 transition-all"
+                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500/50 hover:border-slate-400 transition-all"
               >
                 <option value="Weight Loss">Weight Loss & Fat Burn</option>
                 <option value="Muscle Gain">Hypertrophy & Muscle Gain</option>
@@ -184,23 +184,23 @@ export const ContactForm = () => {
 
           {/* Message textarea */}
           <div>
-            <label className="block text-xs font-semibold text-gray-300 mb-1.5">
-              Your Message or Questions <span className="text-emerald-400">*</span>
+            <label className="block text-xs font-bold text-slate-800 mb-1.5">
+              Your Message or Questions <span className="text-emerald-600">*</span>
             </label>
             <textarea
               rows={4}
               placeholder="Tell Coach Shanmuk about your current fitness level, challenges, or personal goals..."
               {...register('message')}
-              className={`w-full px-4 py-3 rounded-xl bg-dark-800 border text-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all ${
-                errors.message ? 'border-red-500/80 bg-red-500/5' : 'border-gray-700/80 hover:border-gray-600'
+              className={`w-full px-4 py-3 rounded-xl bg-slate-50 border text-slate-900 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all ${
+                errors.message ? 'border-red-500 bg-red-50' : 'border-slate-300 hover:border-slate-400'
               }`}
             />
             {errors.message && (
-              <p className="text-red-400 text-[11px] mt-1">{errors.message.message}</p>
+              <p className="text-red-600 text-[11px] font-bold mt-1">{errors.message.message}</p>
             )}
           </div>
 
-          {/* Submit Action & WhatsApp option */}
+          {/* Submit Action */}
           <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
             <Button
               type="submit"
