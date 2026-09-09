@@ -122,8 +122,8 @@ export const Footer = () => {
 
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 text-slate-400">
             <p>© {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.</p>
-            <p className="flex items-center gap-1">
-              Designed & Built for peak fitness performance.
+            <p className="flex items-center gap-1 font-semibold text-slate-300">
+              Designed and Developed by <span className="text-emerald-400 font-extrabold">Inaya Web Digitals</span>
             </p>
           </div>
         </div>
